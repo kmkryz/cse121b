@@ -12,7 +12,9 @@ const profilePicture = "w02-task/images/headshot.JPG";
 const nameElement = document.getElementById("name");
 const foodElement = document.getElementById("food");
 var yearElement = document.querySelector("#year");
-const imageElement = document.getElementByTagName("img");
+const imageElements = document.getElementsByTagName("img");
+const imageElement = imageElements[0]; 
+
 
 
 
@@ -20,7 +22,7 @@ const imageElement = document.getElementByTagName("img");
 /* Step 4 - Adding Content */
 nameElement.innerHTML = `<strong>${fullName}</strong>`;
 yearElement.textcontent = currentYear;
-imageElement.setAttribute('src',profilePicture);
+imageElement.setAttribute('src', profilePicture);
 imageElement.setAttribute('alt', `Profile image of ${fullName}`);
 
 
