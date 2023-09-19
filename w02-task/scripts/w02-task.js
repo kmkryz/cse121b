@@ -30,7 +30,7 @@ imageElement.setAttribute('alt', `Profile image of ${fullName}`);
 /* Step 5 - Array */
 const favoriteFoods = ['Peanut butter','Strawberries','Peaches','Tacos','Steak'];
 const foodList = favoriteFoods.join(', ');
-foodElement.textContent = `My Favorite Foods: ${favoriteFoods}`;
+foodElement.textContent = `${favoriteFoods}`;
 const newFavoriteFood = "Dutch Baby";
 favoriteFoods.push(newFavoriteFood);
 foodElement.innerHTML += `<br>${favoriteFoods}`;
