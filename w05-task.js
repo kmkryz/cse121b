@@ -47,6 +47,8 @@ const getTemples = async() => {
 };
 
 
+
+
 /* reset Function */
 const reset = () => {
     const articleElements = document.querySelectorAll('article');
@@ -59,6 +61,7 @@ const reset = () => {
 
 /* sortBy Function */
 const sortBy = (temples) => {
+
     reset();
 
     const filter = document.querySelector("#sortBy").value;
@@ -67,17 +70,21 @@ const sortBy = (temples) => {
 
         case 'utah':
             temples = temples.filter(temple => temple.location.includes("Utah"));
+            
             break;
 
         case 'notutah':
-            temples = temples.filter(temple => !temples.location.includes("Utah"));
+            temples = temples.filter(temple => !temple.location.includes("Utah"));
+            
             break;
 
         case 'older':
-            temples = temples.filter(temple => new Date(temples.dedicatedDate) < new Date(1950, 0, 1));
+            temples = temples.filter(temple => new Date(temple.dedicated) < new Date(1950, 0, 1));
+            
             break;
 
         case 'all':
+            
             break;
     }
 
@@ -87,8 +94,14 @@ const sortBy = (temples) => {
 
 
 
-getTemples();
+
 
 /* Event Listener */
 document.querySelector("#sortBy").addEventListener("change", () => { sortBy(templeList) } );
+
+getTemples();
+
+
+
+
 
