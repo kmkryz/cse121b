@@ -1,0 +1,95 @@
+/* styles.css */
+
+/* Body and Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.weather-app {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Search Container Styles */
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#city-input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#fetch-weather-btn {
+    width: 28%;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#fetch-weather-btn:hover {
+    background-color: #013a76;
+}
+
+/* Weather Information Styles */
+.weather-info {
+    text-align: center;
+}
+
+/* Additional Styling */
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Error Message Styling */
+#weather-output.error {
+    color: #ff0000;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+    .weather-app {
+        padding: 10px;
+        max-width: 90%;
+    }
+
+    #city-input {
+        width: 60%;
+    }
+
+    #fetch-weather-btn {
+        width: 30%;
+    }
+}
