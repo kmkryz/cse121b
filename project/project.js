@@ -1,13 +1,10 @@
-// main.js
-
-import { fetchWeatherData } from './project-weather.js';
+import { fetchWeatherData } from './weatherService.js';
 
 const cityInput = document.getElementById('city-input');
 const fetchWeatherBtn = document.getElementById('fetch-weather-btn');
 const weatherOutput = document.getElementById('weather-output');
 
-// Define a function to handle the click event
-function handleFetchWeatherClick() {
+fetchWeatherBtn.addEventListener('click', () => {
     const city = cityInput.value.trim();
     if (city) {
         fetchWeatherData(city)
@@ -23,8 +20,4 @@ function handleFetchWeatherClick() {
                 weatherOutput.textContent = 'Error fetching weather data.';
             });
     }
-}
-
-// Attach the event listener to the button
-fetchWeatherBtn.addEventListener('click', handleFetchWeatherClick);
-
+});
