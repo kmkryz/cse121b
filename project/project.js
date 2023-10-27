@@ -4,7 +4,7 @@ const cityInput = document.getElementById('city-input');
 const fetchWeatherBtn = document.getElementById('fetch-weather-btn');
 const weatherOutput = document.getElementById('weather-output');
 
-// Example array of user-defined cities
+// array of set cities to display
 const userCities = ['London', 'Paris', 'Berlin', 'Rome', 'Madrid'];
 
 function createAndAppendElement(parent, tag, text) {
