@@ -4,6 +4,9 @@ const cityInput = document.getElementById('city-input');
 const fetchWeatherBtn = document.getElementById('fetch-weather-btn');
 const weatherOutput = document.getElementById('weather-output');
 
+// Example array of user-defined cities
+const userCities = ['London', 'Paris', 'Berlin', 'Rome', 'Madrid'];
+
 function createAndAppendElement(parent, tag, text) {
     const element = document.createElement(tag);
     element.textContent = text;
@@ -13,22 +16,26 @@ function createAndAppendElement(parent, tag, text) {
 fetchWeatherBtn.addEventListener('click', () => {
     const city = cityInput.value.trim();
     if (city) {
-        fetchWeatherData(city)
-            .then(weatherInfo => {
-                // Create a container for weather data
-                const weatherContainer = document.createElement('div');
-                weatherContainer.className = 'weather-container';
+        if (!userCities.includes(city)) {
+            userCities.push(city); // Add the city to the list if not already there
+        }
 
-                // Create and append elements with data
-                createAndAppendElement(weatherContainer, 'h2', `Weather in ${city}`);
-                createAndAppendElement(weatherContainer, 'p', `Temperature: ${weatherInfo.temperature}°C / ${convertToFahrenheit(weatherInfo.temperature)}°F`);
-                createAndAppendElement(weatherContainer, 'p', `Description: ${weatherInfo.description}`);
-                createAndAppendElement(weatherContainer, 'p', `Humidity: ${weatherInfo.humidity}%`);
-                createAndAppendElement(weatherContainer, 'p', `Wind Speed: ${weatherInfo.windSpeed} m/s`);
-
-                // Replace the existing content in the weatherOutput with the new data
+        // Use the map method to fetch weather data for user-defined cities
+        Promise.all(userCities.map(userCity => fetchWeatherData(userCity)))
+            .then(weatherInfoList => {
                 weatherOutput.innerHTML = '';
-                weatherOutput.appendChild(weatherContainer);
+                weatherInfoList.forEach(weatherInfo => {
+                    const weatherContainer = document.createElement('div');
+                    weatherContainer.className = 'weather-container';
+                    
+                    createAndAppendElement(weatherContainer, 'h2', `Weather in ${weatherInfo.city}`);
+                    createAndAppendElement(weatherContainer, 'p', `Temperature: ${weatherInfo.temperatureCelsius}°C / ${weatherInfo.temperatureFahrenheit}°F`);
+                    createAndAppendElement(weatherContainer, 'p', `Description: ${weatherInfo.description}`);
+                    createAndAppendElement(weatherContainer, 'p', `Humidity: ${weatherInfo.humidity}%`);
+                    createAndAppendElement(weatherContainer, 'p', `Wind Speed: ${weatherInfo.windSpeed} m/s`);
+                    
+                    weatherOutput.appendChild(weatherContainer);
+                });
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -36,8 +43,3 @@ fetchWeatherBtn.addEventListener('click', () => {
             });
     }
 });
-
-// Function to convert temperature from Celsius to Fahrenheit
-function convertToFahrenheit(celsius) {
-    return (celsius * 9/5) + 32;
-}
