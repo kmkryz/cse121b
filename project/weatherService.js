@@ -1,16 +1,16 @@
-const apiKey = 'd354d22d1fdc9585f60e31bb1de88c80'; // Replace with your API key
+const apiKey = 'f39f961f2e958c38e522f032ee067343'; // Replace with your Weatherstack API key
 
 export async function fetchWeatherData(city) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+        const response = await fetch(`http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}&units=m`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch weather data');
         }
 
         const data = await response.json();
-        const temperature = data.main.temp.toFixed(1);
-        const description = data.weather[0].description;
+        const temperature = data.current.temperature;
+        const description = data.current.weather_descriptions[0];
 
         return { temperature, description };
     } catch (error) {

@@ -1,4 +1,4 @@
-import { fetchWeatherData } from './weatherService.js';
+import { fetchWeatherData } from './weatherservice.js';
 
 const cityInput = document.getElementById('city-input');
 const fetchWeatherBtn = document.getElementById('fetch-weather-btn');
